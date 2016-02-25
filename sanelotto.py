@@ -1,9 +1,9 @@
 import sys
 
-from help import help
-from generate import generate
-from create import create
-from start import start
+from routes.help import help
+from routes.generate import generate
+from routes.create import create
+from routes.start import start
 
 args = sys.argv
 args_count = len(args)

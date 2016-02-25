@@ -31,5 +31,7 @@ def create(args):
         server_config = {
             'name': project_name,
             'github_user': 'username',
-            'github_repo': 'repository'
+            'github_repo': 'repository',
+            'branch': 'master',
+            'rewrite_configs': True
         }
