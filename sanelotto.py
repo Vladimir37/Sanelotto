@@ -1,5 +1,4 @@
 import sys
-import os
 
 from help import help
 from generate import generate
@@ -19,12 +18,9 @@ else:
     elif(command == 'generate'):
         generate()
     elif(command == 'create'):
-        create()
+        create(args)
     elif(command == 'start'):
         start()
     else:
         print('Incorrect command')
         help()
-
-# print(sys.argv)
-# print(os.getcwd())
