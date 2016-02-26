@@ -64,27 +64,12 @@ def creating(current_dir, project_name, local_config, server_config):
             signal_err('Configs files for overwriting not been created!')
             return False
 
-    if server_config['start_commands'] or server_config['stop_commands']:
-        try:
-            os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app')
-            signal_ok('Directory for additional commands was created')
-        except:
-            signal_err('Directory for additional commands not been created!')
-            return False
+    try:
+        os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app')
+        open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app/start.slfile', 'w').close()
+        signal_ok('Directory for additional commands was created')
+    except:
+        signal_err('Directory for additional commands not been created!')
+        return False
 
-    if server_config['start_commands']:
-        try:
-            open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app/start.slfile', 'w').close()
-            signal_ok('File for start commands was created')
-        except:
-            signal_err('File for start commands not been created!')
-            return False
-
-    if server_config['stop_commands']:
-        try:
-            open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app/stop.slfile', 'w').close()
-            signal_ok('File for stop commands was created')
-        except:
-            signal_err('File for stop commands not been created!')
-            return False
     signal_done('Project ' + project_name + ' successfully created!')
