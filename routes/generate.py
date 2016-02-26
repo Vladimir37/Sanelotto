@@ -1,6 +1,7 @@
 import os
 
 from additional.signals import signal_warn
+from additional.creating import creating
 
 def generate():
     current_dir = os.getcwd()
@@ -93,9 +94,42 @@ def generate():
             break
 
     while True:
+        stop_comm = input('Do you need special commands for stopping project before restart? (y/n): ')
+        if not stop_comm != 'y' and stop_comm != 'n':
+            print('Incorrect!')
+            continue
+        else:
+            break
+
+    while True:
         config_ow = input('Will you overwrite JSON configs after downloading project on server? (y/n): ')
         if not config_ow != 'y' and config_ow != 'n':
             print('Incorrect!')
             continue
         else:
             break
+
+    # creating configs
+    local_config = {
+        'name': project_name,
+        'server': server_addr,
+        'ssh_key': auth_type == 'key',
+        'login': username,
+        'pass': password,
+        'before_start_commands': before_commands == 'y',
+        'before_start_dir': 'app',
+        'server_dir': server_dir
+    }
+    server_config = {
+        'name': project_name,
+        'github_user': gt_name,
+        'github_repo': gt_repo,
+        'branch': gt_branch,
+        'rewrite_configs': config_ow == 'y',
+        'configs_dir': 'configs',
+        'start_commands': True,
+        'stop_commands': stop_comm == 'y',
+        'commands_dir': 'app'
+    }
+
+    creating(current_dir, project_name, local_config, server_config)

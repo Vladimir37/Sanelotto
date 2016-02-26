@@ -31,6 +31,7 @@ def create(args):
         'rewrite_configs': True,
         'configs_dir': 'configs',
         'start_commands': True,
+        'stop_commands': True,
         'commands_dir': 'app'
     }
 
