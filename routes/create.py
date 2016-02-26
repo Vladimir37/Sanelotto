@@ -1,7 +1,7 @@
 import os
 import json
 
-from additional.signals import signal_err, signal_ok
+from additional.signals import signal_err, signal_ok, signal_done
 
 
 def create(args):
@@ -76,7 +76,7 @@ def create(args):
     if local_config['before_start_commands']:
         try:
             os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_local/app')
-            open(current_dir + '/' + project_name + '/' + 'Sanelotto_local/app/before.sldoc', 'w').close()
+            open(current_dir + '/' + project_name + '/' + 'Sanelotto_local/app/before.slfile', 'w').close()
             signal_ok('Additional local files was created')
         except:
             signal_err('Additional local files not been created!')
@@ -85,6 +85,9 @@ def create(args):
     if server_config['rewrite_configs']:
         try:
             os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_server/configs')
+            overwriting_config = open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/configs/__main__.json', 'w')
+            overwriting_config.write(json.dumps({}))
+            overwriting_config.close()
             signal_ok('Configs files for overwriting was created')
         except:
             signal_err('Configs files for overwriting not been created!')
@@ -100,8 +103,17 @@ def create(args):
 
     if server_config['start_commands']:
         try:
-            os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app')
+            open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app/start.slfile', 'w').close()
             signal_ok('File for start commands was created')
         except:
             signal_err('File for start commands not been created!')
             return False
+
+    if server_config['stop_commands']:
+        try:
+            open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app/stop.slfile', 'w').close()
+            signal_ok('File for stop commands was created')
+        except:
+            signal_err('File for stop commands not been created!')
+            return False
+    signal_done('Project ' + project_name + ' successfully created!')
