@@ -24,13 +24,11 @@ def generate():
             break
 
     while True:
-        signal_warn('If you will use login and password, then on local machine will be installed "sshpass" ')
         auth_type = input('Are you use ssh-key or login/password authentication? (key/pass): ')
         if auth_type != 'key' and auth_type != 'pass':
             print('Incorrect!')
             continue
         else:
-            signal_warn('"sshpass" will be installed when you first start deploy project')
             break
 
     while True:
@@ -103,7 +101,7 @@ def generate():
 
     while True:
         config_ow = input('Will you overwrite JSON configs after downloading project on server? (y/n): ')
-        if not config_ow != 'y' and config_ow != 'n':
+        if config_ow != 'y' and config_ow != 'n':
             print('Incorrect!')
             continue
         else:
