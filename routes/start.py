@@ -1,8 +1,8 @@
 import os
-import json
 
-from additional.signals import signal_done, signal_warn, signal_ok, signal_err
-from additional.sshpass import ssh_exec_pass
+from additional.signals import signal_err
+from additional.start_local import start_local
+from additional.start_server import start_server
 
 def start(args):
 
@@ -28,34 +28,11 @@ def start(args):
         return False
 
     # launch
-    try:
-        local_file_sys = open(current_dir + '/' + 'Sanelotto_' + start_type + '/Sanelotto_' + start_type + '.json', 'r')
-        local_file = local_file_sys.read()
-        local_file = json.loads(local_file)
-        local_file_sys.close()
-    except:
-        signal_err('Failed to read Sanelotto_' + start_type + '.json')
-        return False
+    if start_type == 'local':
+        start_local(current_dir)
 
-    # start before commands
-    if local_file['before_start_commands']:
-        try:
-            before_addr = current_dir + '/' + 'Sanelotto_' + start_type + '/' + local_file['before_start_dir'] + '/before.slfile'
-            before_commands = open(current_dir, 'r')
-            for command in before_commands:
-                os.system(command)
-            signal_ok('Local commands successfully completed')
-        except:
-            signal_err('Failed to run local commands')
-            return False
+    elif start_type == 'server':
+        start_server(current_dir)
 
-    # start command making
-    start_command = 'cd ' + local_file['server_dir'] + ' && sanelotto start server'
-
-    # connect command making
-    if local_file['ssh_key']:
-        connect_command = 'ssh ' + local_file['login'] + '@' + local_file['server'] + ' "' + start_command + '"'
-        os.system(connect_command)
     else:
-        connect_command = ['ssh', local_file['login'] + '@' + local_file['server'], start_command]
-        ssh_exec_pass(local_file['pass'], connect_command)
+        signal_err('Incorrect command')

@@ -105,10 +105,12 @@ def generate():
             print('Incorrect!')
             continue
         else:
+            if use_sudo == 'y':
+                signal_warn('The user on server must have the right to use "sudo" without password')
             break
 
     while True:
-        config_ow = input('Will you overwrite JSON configs after downloading project on server? (y/n): ')
+        config_ow = input('Will you overwrite configs or other files after downloading project on server? (y/n): ')
         if config_ow != 'y' and config_ow != 'n':
             print('Incorrect!')
             continue
