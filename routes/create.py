@@ -21,7 +21,6 @@ def create(args):
         'pass': 'password',
         'before_start_commands': True,
         'before_start_dir': 'app',
-        'use_sudo': False,
         'server_dir': '/root'
     }
     server_config = {

@@ -93,7 +93,15 @@ def generate():
 
     while True:
         stop_comm = input('Do you need special commands for stopping project before restart? (y/n): ')
-        if not stop_comm != 'y' and stop_comm != 'n':
+        if stop_comm != 'y' and stop_comm != 'n':
+            print('Incorrect!')
+            continue
+        else:
+            break
+
+    while True:
+        use_sudo = input('Do you want use "sudo" on server? (y/n): ')
+        if use_sudo != 'y' and use_sudo != 'n':
             print('Incorrect!')
             continue
         else:
@@ -127,6 +135,7 @@ def generate():
         'configs_dir': 'configs',
         'start_commands': True,
         'stop_commands': stop_comm == 'y',
+        'use_sudo': use_sudo == 'y',
         'commands_dir': 'app'
     }
 

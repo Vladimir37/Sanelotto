@@ -20,7 +20,7 @@ else:
     elif(command == 'create'):
         create(args)
     elif(command == 'start'):
-        start()
+        start(args)
     else:
         print('Incorrect command')
         help()
