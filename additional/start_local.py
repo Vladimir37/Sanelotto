@@ -17,7 +17,7 @@ def start_local(current_dir):
     # start before commands
     if local_file['before_start_commands']:
         try:
-            before_addr = current_dir + '/' + 'Sanelotto_local/' + local_file['before_start_dir'] + '/before.slfile'
+            before_addr = current_dir + '/' + 'Sanelotto_local/' + str(local_file['before_start_dir']) + '/before.slfile'
             before_commands = open(before_addr, 'r')
             for command in before_commands:
                 os.system(command)
@@ -27,12 +27,12 @@ def start_local(current_dir):
             return False
 
     # start command making
-    start_command = 'cd ' + local_file['server_dir'] + ' && sanelotto start server > log_sanelotto.txt'
+    start_command = 'cd ' + str(local_file['server_dir']) + ' && sanelotto start server > log_sanelotto.txt'
 
     # connect command making
     if local_file['ssh_key']:
-        connect_command = 'ssh ' + local_file['login'] + '@' + local_file['server'] + ' "' + start_command + '"'
+        connect_command = 'ssh ' + str(local_file['login']) + '@' + local_file['server'] + ' "' + start_command + '"'
         os.system(connect_command)
     else:
-        connect_command = ['ssh', local_file['login'] + '@' + local_file['server'], start_command]
-        ssh_exec_pass(local_file['pass'], connect_command)
+        connect_command = ['ssh', str(local_file['login']) + '@' + local_file['server'], start_command]
+        ssh_exec_pass(str(local_file['pass']), connect_command)

@@ -20,11 +20,11 @@ def start_server(current_dir):
         prefix = ''
 
     # reload project
-    if os.path.exists(current_dir + '/' + server_file['name']):
+    if os.path.exists(current_dir + '/' + str(server_file['name'])):
         # stop command
         if server_file['stop_commands']:
             try:
-                stop_sys = open(current_dir + '/Sanelotto_server/' + server_file['commands_dir'] + '/stop.slfile', 'r')
+                stop_sys = open(current_dir + '/Sanelotto_server/' + str(server_file['commands_dir']) + '/stop.slfile', 'r')
                 for command in stop_sys:
                     os.system(prefix + command)
                 stop_sys.close()
@@ -33,11 +33,11 @@ def start_server(current_dir):
                 signal_err('Failed to run stop commands')
                 return False
         # reload from GitHub
-        os.system('cd ' + current_dir + '/' + server_file['name'] + ' && ' + prefix + 'git pull')
+        os.system('cd ' + current_dir + '/' + str(server_file['name']) + ' && ' + prefix + 'git pull')
         signal_ok('Project was reloaded from GitHub')
     # download project
     else:
-        dl_addr = server_file['github_user'] + '/' + server_file['github_repo'] + ' -b ' + server_file['branch']
+        dl_addr = str(server_file['github_user']) + '/' + server_file['github_repo'] + ' -b ' + server_file['branch']
         os.system(prefix + 'git clone https://github.com/' + dl_addr)
         signal_ok('Project was downloaded from GitHub')
 
@@ -45,7 +45,7 @@ def start_server(current_dir):
     if server_file['rewrite_configs']:
         # read __main__
         try:
-            config_main_sys = open(current_dir + '/Sanelotto_server/' + server_file['configs_dir'] + '/' + '__main__.json', 'r')
+            config_main_sys = open(current_dir + '/Sanelotto_server/' + str(server_file['configs_dir']) + '/' + '__main__.json', 'r')
             config_main = config_main_sys.read()
             config_main = json.loads(config_main)
             config_main_sys.close()
@@ -57,8 +57,8 @@ def start_server(current_dir):
         # overwriting
         for config_name in config_main:
             try:
-                shutil.copyfile(current_dir + '/Sanelotto_server/' + server_file['configs_dir'] + '/' + config_name,
-                                current_dir + '/' + server_file['name'] + '/' + config_main[config_name])
+                shutil.copyfile(current_dir + '/Sanelotto_server/' + str(server_file['configs_dir']) + '/' + config_name,
+                                current_dir + '/' + str(server_file['name']) + '/' + config_main[config_name])
                 signal_ok('Copying ' + config_name)
             except:
                 signal_err('Failed to copy ' + config_name)
@@ -68,7 +68,7 @@ def start_server(current_dir):
         # launch
         if server_file['start_commands']:
             try:
-                stop_sys = open(current_dir + '/Sanelotto_server/' + server_file['commands_dir'] + '/start.slfile', 'r')
+                stop_sys = open(current_dir + '/Sanelotto_server/' + str(server_file['commands_dir']) + '/start.slfile', 'r')
                 for command in stop_sys:
                     os.system(prefix + command)
                 stop_sys.close()
