@@ -5,7 +5,7 @@ from additional.signals import signal_err, signal_ok, signal_done
 
 def uninstall():
     home_dir = os.path.expanduser('~')
-    question = input('For uninstall Sanelotto enter "uninstall"')
+    question = input('For uninstall Sanelotto enter "uninstall": ')
     if question != 'uninstall':
         print('Not uninstalled')
         return False
@@ -18,7 +18,7 @@ def uninstall():
         os.remove('/usr/local/bin/sanelotto')
         signal_ok('Link was deleted')
     except:
-        signal_err('Failed to delete link')
+        signal_err('Failed to delete link. Permission denied or link not exist.')
         return False
 
     if os.access(home_dir + '/.sanelotto', os.F_OK):
