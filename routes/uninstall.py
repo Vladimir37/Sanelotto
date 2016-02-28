@@ -4,7 +4,11 @@ import shutil
 from additional.signals import signal_err, signal_ok, signal_done
 
 def uninstall():
-    home_dir = os.path.expanduser('~')
+    try:
+        home_dir = os.path.expanduser('~' + os.environ["SUDO_USER"])
+    except:
+        home_dir = os.path.expanduser('~')
+
     question = input('For uninstall Sanelotto enter "uninstall": ')
     if question != 'uninstall':
         print('Not uninstalled')
