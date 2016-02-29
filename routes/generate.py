@@ -134,7 +134,7 @@ def generate():
         'github_repo': gt_repo,
         'branch': gt_branch,
         'rewrite_configs': config_ow == 'y',
-        'configs_dir': 'configs',
+        'configs_dir': 'files',
         'start_commands': True,
         'stop_commands': stop_comm == 'y',
         'use_sudo': use_sudo == 'y',

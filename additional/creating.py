@@ -55,8 +55,8 @@ def creating(current_dir, project_name, local_config, server_config):
 
     if server_config['rewrite_configs']:
         try:
-            os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_server/configs')
-            overwriting_config = open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/configs/__main__.json', 'w')
+            os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_server/files')
+            overwriting_config = open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/files/__main__.json', 'w')
             overwriting_config.write(json.dumps({}))
             overwriting_config.close()
             signal_ok('Configs files for overwriting was created')

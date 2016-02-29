@@ -29,7 +29,7 @@ def create(args):
         'github_repo': 'repository',
         'branch': 'master',
         'rewrite_configs': True,
-        'configs_dir': 'configs',
+        'configs_dir': 'files',
         'start_commands': True,
         'stop_commands': True,
         'use_sudo': False,
