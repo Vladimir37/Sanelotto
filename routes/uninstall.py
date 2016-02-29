@@ -23,7 +23,7 @@ def uninstall():
         return False
 
     try:
-        shutil.rmtree(sl_dir + '/.sanelotto')
+        shutil.rmtree(sl_dir + '/Sanelotto')
         signal_ok('Sanelotto directory was deleted')
     except:
         signal_err('Failed to delete Sanelotto directory')
