@@ -171,41 +171,38 @@ RU5TRVVUBQADxWrSVnV4CwABBOgDAAAE6AMAAFBLBQYAAAAAEQARAMEFAAAYHwAAAAA="""
 
 # installing
 def install():
-    # home dir
-    try:
-        home_dir = os.path.expanduser('~' + os.environ["SUDO_USER"])
-    except:
-        home_dir = os.path.expanduser('~')
+    # dir for installing
+    install_dir = '/usr/share/'
 
     # access check
-    if not os.access('/usr/local/bin', os.W_OK) or not os.access(home_dir, os.W_OK):
+    if not os.access('/usr/local/bin', os.W_OK) or not os.access(install_dir, os.W_OK):
         print('[\033[91mERROR\033[0m] Permission denied')
         return False
 
     # install check
-    if os.access(home_dir + '/.Sanelotto', os.F_OK):
+    if os.access(install_dir + '/Sanelotto', os.F_OK):
         print('[\033[91mERROR\033[0m] Sanelotto already installed')
         return False
 
     # creating main dir
     try:
-        os.mkdir(home_dir + '/.Sanelotto')
+        os.mkdir(install_dir + '/Sanelotto')
         print('[\033[92mOK\033[0m] Directory created')
     except:
-        print('[\033[91mERROR\033[0m] Failed to create ~/.Sanelotto')
+        print('[\033[91mERROR\033[0m] Failed to create /usr/share/Sanelotto')
         return False
 
     # unpacking
     try:
         # creating
-        temp_archive = open(home_dir + '/.Sanelotto/temp_sl.zip', 'wb')
+        temp_archive = open(install_dir + '/Sanelotto/temp_sl.zip', 'wb')
         temp_archive.write(base64.decodebytes(archive))
         temp_archive.close()
         # extracting
-        temp_archive_obj = zipfile.ZipFile(home_dir + '/.Sanelotto/temp_sl.zip', 'r')
-        temp_archive_obj.extractall(home_dir + '/.Sanelotto')
+        temp_archive_obj = zipfile.ZipFile(install_dir + '/Sanelotto/temp_sl.zip', 'r')
+        temp_archive_obj.extractall(install_dir + '/Sanelotto')
         # deleting temp archive
-        os.remove(home_dir + '/.Sanelotto/temp_sl.zip')
+        os.remove(install_dir + '/Sanelotto/temp_sl.zip')
         print('[\033[92mOK\033[0m] Sanelotto extracted')
     except:
         print('[\033[91mERROR\033[0m] Failed to unpack Sanelotto')
@@ -213,7 +210,7 @@ def install():
 
     # creating link
     try:
-        os.symlink(home_dir + '/.Sanelotto/sanelotto', '/usr/local/bin/sanelotto')
+        os.symlink(install_dir + '/Sanelotto/sanelotto', '/usr/local/bin/sanelotto')
         os.chmod('/usr/local/bin/sanelotto', 0o777)
         print('[\033[92mOK\033[0m] Link created')
     except:
