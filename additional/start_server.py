@@ -26,7 +26,7 @@ def start_server(current_dir):
     if server_file['use_sudo']:
         prefix = 'sudo '
     if server_file['logging']:
-        postfix = ' >> logs/server_actions.txt'
+        postfix = ' >> ' + current_dir + '/' + 'Sanelotto_server/logs/server_actions.txt'
 
     # reload project
     if os.path.exists(current_dir + '/' + str(server_file['github_repo'])):

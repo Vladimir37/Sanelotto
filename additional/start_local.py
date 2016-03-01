@@ -27,8 +27,8 @@ def start_local(current_dir):
     if local_file['use_sudo']:
         prefix = 'sudo '
     if local_file['logging']:
-        postfix = ' >> logs/local_start.txt'
-        postfix_s = ' >> logs/server_main_start.txt'
+        postfix = ' >> ' + current_dir + '/' + 'Sanelotto_local/logs/local_start.txt'
+        postfix_s = ' >> Sanelotto_server/logs/server_main_start.txt'
 
     # start before commands
     if local_file['before_start_commands']:
