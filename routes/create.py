@@ -21,6 +21,7 @@ def create(args):
         'pass': 'password',
         'before_start_commands': True,
         'before_start_dir': 'app',
+        'use_sudo': False,
         'server_dir': '/root'
     }
     server_config = {
@@ -30,6 +31,7 @@ def create(args):
         'branch': 'master',
         'rewrite_configs': True,
         'configs_dir': 'files',
+        'first_commands': True,
         'start_commands': True,
         'stop_commands': True,
         'use_sudo': False,

@@ -27,7 +27,10 @@ def start_local(current_dir):
             return False
 
     # start command making
-    start_command = 'cd ' + str(local_file['server_dir']) + ' && sanelotto start server > log_sanelotto.txt'
+    prefix = ''
+    if local_file['use_sudo']:
+        prefix = 'sudo '
+    start_command = 'cd ' + str(local_file['server_dir']) + ' && ' + prefix + 'sanelotto start server > log_sanelotto.txt'
 
     # connect command making
     if local_file['ssh_key']:

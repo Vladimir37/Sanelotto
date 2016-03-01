@@ -72,6 +72,14 @@ def creating(current_dir, project_name, local_config, server_config):
             signal_err('Directory for additional commands not been created!')
             return False
 
+    if server_config['first_commands']:
+        try:
+            open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app/first.slfile', 'w').close()
+            signal_ok('File for first commands was created')
+        except:
+            signal_err('File for first commands not been created!')
+            return False
+
     if server_config['start_commands']:
         try:
             open(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app/start.slfile', 'w').close()

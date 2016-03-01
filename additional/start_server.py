@@ -20,7 +20,7 @@ def start_server(current_dir):
         prefix = ''
 
     # reload project
-    if os.path.exists(current_dir + '/' + str(server_file['name'])):
+    if os.path.exists(current_dir + '/' + str(server_file['github_repo'])):
         # stop command
         if server_file['stop_commands']:
             try:
@@ -33,13 +33,24 @@ def start_server(current_dir):
                 signal_err('Failed to run stop commands')
                 return False
         # reload from GitHub
-        os.system('cd ' + current_dir + '/' + str(server_file['name']) + ' && ' + prefix + 'git pull')
+        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git pull')
         signal_ok('Project was reloaded from GitHub')
     # download project
     else:
         dl_addr = str(server_file['github_user']) + '/' + server_file['github_repo'] + ' -b ' + server_file['branch']
         os.system(prefix + 'git clone https://github.com/' + dl_addr)
         signal_ok('Project was downloaded from GitHub')
+        # first commands
+        if server_file['first_commands']:
+            try:
+                first_sys = open(current_dir + '/Sanelotto_server/' + str(server_file['commands_dir']) + '/first.slfile', 'r')
+                for command in first_sys:
+                    os.system(prefix + command)
+                first_sys.close()
+                signal_ok('First commands completed')
+            except:
+                signal_err('Failed to run first commands')
+                return False
 
     # config overwrite
     if server_file['rewrite_configs']:

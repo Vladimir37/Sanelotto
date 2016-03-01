@@ -59,6 +59,16 @@ def generate():
             break
 
     while True:
+        use_sudo_local = input('Do you want use "sudo" on local machine? (y/n): ')
+        if use_sudo_local != 'y' and use_sudo_local != 'n':
+            print('Incorrect!')
+            continue
+        else:
+            if use_sudo_local == 'y':
+                signal_warn('The user on local machine must have the right to use "sudo" without password')
+            break
+
+    while True:
         server_dir = input('Enter directory on server for your application (Example: /home/username): ')
         if not server_dir:
             print('Incorrect!')
@@ -86,6 +96,14 @@ def generate():
     while True:
         gt_branch = input('Enter desired branch name on repository (Example: master): ')
         if not gt_branch:
+            print('Incorrect!')
+            continue
+        else:
+            break
+
+    while True:
+        first_comm = input('Do you need special commands for first start project before downloading? (y/n): ')
+        if first_comm != 'y' and first_comm != 'n':
             print('Incorrect!')
             continue
         else:
@@ -126,7 +144,8 @@ def generate():
         'pass': password,
         'before_start_commands': before_commands == 'y',
         'before_start_dir': 'app',
-        'server_dir': server_dir
+        'server_dir': server_dir,
+        'use_sudo': use_sudo_local == 'y'
     }
     server_config = {
         'name': project_name,
@@ -135,6 +154,7 @@ def generate():
         'branch': gt_branch,
         'rewrite_configs': config_ow == 'y',
         'configs_dir': 'files',
+        'first_commands': first_comm == 'y',
         'start_commands': True,
         'stop_commands': stop_comm == 'y',
         'use_sudo': use_sudo == 'y',
