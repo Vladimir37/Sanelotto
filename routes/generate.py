@@ -145,6 +145,7 @@ def generate():
         'before_start_commands': before_commands == 'y',
         'before_start_dir': 'app',
         'server_dir': server_dir,
+        'logging': True,
         'use_sudo': use_sudo_local == 'y'
     }
     server_config = {
@@ -158,6 +159,7 @@ def generate():
         'start_commands': True,
         'stop_commands': stop_comm == 'y',
         'use_sudo': use_sudo == 'y',
+        'logging': True,
         'commands_dir': 'app'
     }
 

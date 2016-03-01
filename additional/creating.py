@@ -64,6 +64,15 @@ def creating(current_dir, project_name, local_config, server_config):
             signal_err('Configs files for overwriting not been created!')
             return False
 
+    if server_config['logging']:
+        try:
+            os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_server/logs')
+            os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_local/logs')
+            signal_ok('Directory for logs was created')
+        except:
+            signal_err('Directory for logs not been created!')
+            return False
+
     if server_config['start_commands'] or server_config['stop_commands']:
         try:
             os.mkdir(current_dir + '/' + project_name + '/' + 'Sanelotto_server/app')

@@ -1,10 +1,16 @@
 import os
 import json
 import shutil
+import datetime
 
 from additional.signals import signal_ok, signal_err, signal_done
 
 def start_server(current_dir):
+    # current date
+    print('---------------------------------------')
+    print(datetime.datetime.now().strftime("%d-%m-%y %H:%M:%S"))
+    print('---------------------------------------')
+
     try:
         server_file_sys = open(current_dir + '/' + 'Sanelotto_server/Sanelotto_server.json', 'r')
         server_file = server_file_sys.read()
@@ -14,10 +20,13 @@ def start_server(current_dir):
         signal_err('Failed to read Sanelotto_server.json')
         return False
 
+    # prefix and postfix
+    prefix = ''
+    postfix = ''
     if server_file['use_sudo']:
         prefix = 'sudo '
-    else:
-        prefix = ''
+    if server_file['logging']:
+        postfix = ' >> logs/server_actions.txt'
 
     # reload project
     if os.path.exists(current_dir + '/' + str(server_file['github_repo'])):
@@ -26,26 +35,26 @@ def start_server(current_dir):
             try:
                 stop_sys = open(current_dir + '/Sanelotto_server/' + str(server_file['commands_dir']) + '/stop.slfile', 'r')
                 for command in stop_sys:
-                    os.system(prefix + command)
+                    os.system(prefix + command + postfix)
                 stop_sys.close()
                 signal_ok('Stop commands completed')
             except:
                 signal_err('Failed to run stop commands')
                 return False
         # reload from GitHub
-        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git pull')
+        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git pull' + postfix)
         signal_ok('Project was reloaded from GitHub')
     # download project
     else:
         dl_addr = str(server_file['github_user']) + '/' + server_file['github_repo'] + ' -b ' + server_file['branch']
-        os.system(prefix + 'git clone https://github.com/' + dl_addr)
+        os.system(prefix + 'git clone https://github.com/' + dl_addr + postfix)
         signal_ok('Project was downloaded from GitHub')
         # first commands
         if server_file['first_commands']:
             try:
                 first_sys = open(current_dir + '/Sanelotto_server/' + str(server_file['commands_dir']) + '/first.slfile', 'r')
                 for command in first_sys:
-                    os.system(prefix + command)
+                    os.system(prefix + command + postfix)
                 first_sys.close()
                 signal_ok('First commands completed')
             except:
@@ -81,7 +90,7 @@ def start_server(current_dir):
             try:
                 stop_sys = open(current_dir + '/Sanelotto_server/' + str(server_file['commands_dir']) + '/start.slfile', 'r')
                 for command in stop_sys:
-                    os.system(prefix + command)
+                    os.system(prefix + command + postfix)
                 stop_sys.close()
                 signal_ok('Start commands completed')
             except:

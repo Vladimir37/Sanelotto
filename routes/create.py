@@ -22,6 +22,7 @@ def create(args):
         'before_start_commands': True,
         'before_start_dir': 'app',
         'use_sudo': False,
+        'logging': True,
         'server_dir': '/root'
     }
     server_config = {
@@ -35,6 +36,7 @@ def create(args):
         'start_commands': True,
         'stop_commands': True,
         'use_sudo': False,
+        'logging': True,
         'commands_dir': 'app'
     }
 
