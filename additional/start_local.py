@@ -7,9 +7,9 @@ from additional.sshpass import ssh_exec_pass
 
 def start_local(current_dir):
     # current date
-    print('---------------------------------------')
-    print(datetime.datetime.now().strftime("%d-%m-%y %H:%M:%S"))
-    print('---------------------------------------')
+    print('#####################')
+    print('# ' + datetime.datetime.now().strftime("%d-%m-%y %H:%M:%S") + ' #')
+    print('#####################')
 
     try:
         local_file_sys = open(current_dir + '/' + 'Sanelotto_local/Sanelotto_local.json', 'r')

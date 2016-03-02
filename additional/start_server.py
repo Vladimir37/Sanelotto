@@ -7,9 +7,9 @@ from additional.signals import signal_ok, signal_err, signal_done
 
 def start_server(current_dir):
     # current date
-    print('---------------------------------------')
-    print(datetime.datetime.now().strftime("%d-%m-%y %H:%M:%S"))
-    print('---------------------------------------')
+    print('#####################')
+    print('# ' + datetime.datetime.now().strftime("%d-%m-%y %H:%M:%S") + ' #')
+    print('#####################')
 
     try:
         server_file_sys = open(current_dir + '/' + 'Sanelotto_server/Sanelotto_server.json', 'r')
@@ -42,12 +42,14 @@ def start_server(current_dir):
                 signal_err('Failed to run stop commands')
                 return False
         # reload from GitHub
+        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git reset --hard')
         os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git pull' + postfix)
-        signal_ok('Project was reloaded from GitHub')
+        signal_ok('Project was updated from GitHub')
     # download project
     else:
         dl_addr = str(server_file['github_user']) + '/' + server_file['github_repo'] + ' -b ' + server_file['branch']
         os.system(prefix + 'git clone https://github.com/' + dl_addr + postfix)
+        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git reset --hard')
         signal_ok('Project was downloaded from GitHub')
         # first commands
         if server_file['first_commands']:
