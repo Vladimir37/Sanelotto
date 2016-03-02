@@ -80,7 +80,7 @@ def start_server(current_dir):
         for config_name in config_main:
             try:
                 shutil.copyfile(current_dir + '/Sanelotto_server/' + str(server_file['configs_dir']) + '/' + config_name,
-                                current_dir + '/' + str(server_file['name']) + '/' + config_main[config_name])
+                                config_main[config_name])
                 signal_ok('Copying ' + config_name)
             except:
                 signal_err('Failed to copy ' + config_name)
