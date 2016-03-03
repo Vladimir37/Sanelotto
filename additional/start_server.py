@@ -42,7 +42,8 @@ def start_server(current_dir):
                 signal_err('Failed to run stop commands')
                 return False
         # reload from GitHub
-        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git reset --hard')
+        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git reset --hard HEAD')
+        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git clean -f -d')
         os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git pull' + postfix)
         signal_ok('Project was updated from GitHub')
     # download project

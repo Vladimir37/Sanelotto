@@ -20,7 +20,7 @@ def router(args):
         elif(command == 'start'):
             start(args)
         elif(command == 'version'):
-            print('Sanelotto 1.7')
+            print('Sanelotto 1.8')
         elif(command == 'uninstall'):
             uninstall()
         else:
