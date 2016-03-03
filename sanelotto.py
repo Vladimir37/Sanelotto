@@ -19,6 +19,8 @@ def router(args):
             create(args)
         elif(command == 'start'):
             start(args)
+        elif(command == 'version'):
+            print('Sanelotto 1.7')
         elif(command == 'uninstall'):
             uninstall()
         else:
