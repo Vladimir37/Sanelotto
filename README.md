@@ -23,3 +23,7 @@ After creating project you will get two directories - for local machine (usually
 * Multilanguage
 * Full Open Source
 * Crossplatform
+
+## Documentation
+* [Full documentation](http://sanelotto.info/)
+* [Documentation source](https://github.com/Vladimir37/Sanelotto_site)
