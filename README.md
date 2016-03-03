@@ -14,15 +14,16 @@ After creating project you will get two directories - for local machine (usually
 ## Features
 * SSH connection through SSH-key or login/password
 * Four types custom commands: before connection, after first downloading, after updating, after first downloading and updating
-* Automatically overwrinig choosen files
+* Automatically overwrinig chosen files
 * Optional detailed logging
-* Highly custmizable through configuration files
 
 ## Benefits
 * Simple and fast
 * Multilanguage
 * Full Open Source
 * Crossplatform
+* For any CI services
+* Highly customizable through configuration files
 
 ## Documentation
 * [Full documentation](http://sanelotto.info/)
