@@ -44,12 +44,18 @@ def start_server(current_dir):
         # reload from GitHub
         os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git reset --hard HEAD')
         os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git clean -f -d')
-        os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git pull' + postfix)
+        updating_result = os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git pull' + postfix)
+        if updating_result != 0:
+            signal_err('Failed to update from GitHub!')
+            return False
         signal_ok('Project was updated from GitHub')
     # download project
     else:
         dl_addr = str(server_file['github_user']) + '/' + server_file['github_repo'] + ' -b ' + server_file['branch']
-        os.system(prefix + 'git clone https://github.com/' + dl_addr + postfix)
+        downloading_result = os.system(prefix + 'git clone https://github.com/' + dl_addr + postfix)
+        if downloading_result != 0:
+            signal_err('Failed to download from GitHub!')
+            return False
         os.system('cd ' + current_dir + '/' + str(server_file['github_repo']) + ' && ' + prefix + 'git reset --hard')
         signal_ok('Project was downloaded from GitHub')
         # first commands
