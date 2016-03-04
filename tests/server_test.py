@@ -89,5 +89,36 @@ class LocalTest(unittest.TestCase):
 
         self.assertTrue(check == 'TESTING\nTESTING\n')
 
+    def test_overwriting(self):
+        os.system('sanelotto create testing')
+        # configs overwrite
+        config_file = open('testing/Sanelotto_server/Sanelotto_server.json', 'r')
+        config = json.loads(config_file.read())
+        config_file.close()
+        config_file = open('testing/Sanelotto_server/Sanelotto_server.json', 'w')
+        config['github_user'] = 'Vladimir37'
+        config['github_repo'] = 'Sanelotto'
+        config_file.write(json.dumps(config))
+        config_file.close()
+        # overwriting config overwrite
+        config_ow = {}
+        config_ow_file = open('testing/Sanelotto_server/files/__main__.json', 'w')
+        config_ow['test_one'] = os.path.abspath('testing/test_one_copy')
+        config_ow['test_two'] = os.path.abspath('testing/test_two_copy')
+        config_ow_file.write(json.dumps(config_ow))
+        config_ow_file.close()
+        # creating files
+        os.system('touch testing/Sanelotto_server/files/test_one')
+        os.system('touch testing/Sanelotto_server/files/test_two')
+        # start
+        os.system('cd testing && sanelotto start server')
+        # checking
+        file_check1 = os.path.exists(os.path.abspath('testing/test_one_copy'))
+        file_check2 = os.path.exists(os.path.abspath('testing/test_two_copy'))
+        # cleaning
+        shutil.rmtree('testing')
+
+        self.assertTrue(file_check1 and file_check2)
+
 suite = unittest.TestLoader().loadTestsFromTestCase(LocalTest)
 unittest.TextTestRunner(verbosity=2).run(suite)
