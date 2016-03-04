@@ -22,6 +22,7 @@ class CreateTest(unittest.TestCase):
         # cleaning
         shutil.rmtree('testing')
         os.remove('test_commands')
+
         self.assertTrue(files_exists)
 
     def test_generate_min(self):
@@ -43,6 +44,7 @@ class CreateTest(unittest.TestCase):
         # cleaning
         shutil.rmtree('testing')
         os.remove('test_commands')
+
         self.assertTrue(files_exists)
 
     def test_create(self):
@@ -50,6 +52,7 @@ class CreateTest(unittest.TestCase):
         local_file = os.path.exists('testing/Sanelotto_local/Sanelotto_local.json')
         server_file = os.path.exists('testing/Sanelotto_server/Sanelotto_server.json')
         shutil.rmtree('testing')
+
         self.assertTrue(local_file and server_file)
 
 suite = unittest.TestLoader().loadTestsFromTestCase(CreateTest)
