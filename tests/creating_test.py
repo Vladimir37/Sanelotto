@@ -55,5 +55,6 @@ class CreateTest(unittest.TestCase):
 
         self.assertTrue(local_file and server_file)
 
-suite = unittest.TestLoader().loadTestsFromTestCase(CreateTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+def creating_testing():
+    suite = unittest.TestLoader().loadTestsFromTestCase(CreateTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

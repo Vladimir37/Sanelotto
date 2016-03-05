@@ -3,7 +3,7 @@ import json
 import shutil
 import unittest
 
-class LocalTest(unittest.TestCase):
+class ServerTest(unittest.TestCase):
     def test_first_commands(self):
         os.system('sanelotto create testing')
         # configs overwrite
@@ -120,5 +120,6 @@ class LocalTest(unittest.TestCase):
 
         self.assertTrue(file_check1 and file_check2)
 
-suite = unittest.TestLoader().loadTestsFromTestCase(LocalTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+def server_testing():
+    suite = unittest.TestLoader().loadTestsFromTestCase(ServerTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

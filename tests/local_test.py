@@ -19,5 +19,6 @@ class LocalTest(unittest.TestCase):
 
         self.assertTrue(dir_check and file_check)
 
-suite = unittest.TestLoader().loadTestsFromTestCase(LocalTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+def local_testing():
+    suite = unittest.TestLoader().loadTestsFromTestCase(LocalTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)
