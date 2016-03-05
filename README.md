@@ -2,6 +2,7 @@
 <image src='https://raw.githubusercontent.com/Vladimir37/Sanelotto_site/master/src/files/logos/logo_mid.png' alt='logo1' style='vertical-align: middle;'>
 
 <a href='https://semaphoreci.com/vladimir37/sanelotto'> <img src='https://semaphoreci.com/api/v1/vladimir37/sanelotto/branches/master/shields_badge.svg' alt='Build Status'></a>
+<a href="https://badge.fury.io/py/sanelotto"><img src="https://badge.fury.io/py/sanelotto.svg" alt="PyPI version"></a>
 
 Sanelotto developed for fast and simple deploy applications to server.
 
