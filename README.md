@@ -1,6 +1,8 @@
 # Sanelotto
 <image src='https://raw.githubusercontent.com/Vladimir37/Sanelotto_site/master/src/files/logos/logo_mid.png' alt='logo1' style='vertical-align: middle;'>
 
+<a href='https://semaphoreci.com/vladimir37/sanelotto'> <img src='https://semaphoreci.com/api/v1/vladimir37/sanelotto/branches/master/shields_badge.svg' alt='Build Status'></a>
+
 Sanelotto developed for fast and simple deploy applications to server.
 
 Sanelotto is suitable for any languages and any frameworks. Configuring is extremely simple - only need to change JSON configuration files and enter the desired commands on the desired language.
