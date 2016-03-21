@@ -4,11 +4,11 @@
 <a href='https://semaphoreci.com/vladimir37/sanelotto'> <img src='https://semaphoreci.com/api/v1/vladimir37/sanelotto/branches/master/shields_badge.svg' alt='Build Status'></a>
 <a href="https://badge.fury.io/py/sanelotto"><img src="https://badge.fury.io/py/sanelotto.svg" alt="PyPI version"></a>
 
-Sanelotto developed for fast and simple deploy applications to server.
+Sanelotto is developed for fast and easy application deployment on the server.
 
-Sanelotto is suitable for any languages and any frameworks. Configuring is extremely simple - only need to change JSON configuration files and enter the desired commands on the desired language.
+Sanelotto is suitable for any frameworks and languages. The setup is quite easy - you need to simply edit the JSON configuration files and enter any comands on any desired language.
 
-After creating project you will get two directories - for local machine (usually virtual machine on Continuous Integration service) and for server. During the update repository on GitHub local part make a SSH connection with server part and update project on server. 
+After creating the project you will get two directories, one for the local machine (usually a virtual machine on Continuous Integration service) and one for the server. The local part connects to the server through SHH after updating the repository on GitHub. After that, the local part updates the project on the server.
 
 ## Dependencies
 * Python 3
@@ -16,8 +16,8 @@ After creating project you will get two directories - for local machine (usually
 
 ## Features
 * SSH connection through SSH-key or login/password
-* Four types custom commands: before connection, after first downloading, after updating, after first downloading and updating
-* Automatically overwrinig chosen files
+* Four types of custom commands: before the connection, after the first download, after updating, after the first downloading and updating
+* Automatic overwriting of selected files
 * Optional detailed logging
 
 ## Benefits
